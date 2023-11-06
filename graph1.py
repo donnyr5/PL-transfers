@@ -1,8 +1,9 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from data.transfers.process_transfers import transfers_five_year_table
 from data.league_tables.process_tables import avg_pts_5_seasons
+from data.transfers.process18_23 import transfers18_23
+from data.transfers.process_transfers import transfers_five_year_table
 
 '''
 Average points per season VS net transfer spending (in million euro) from 2018/19 - 2022/2023
@@ -30,14 +31,18 @@ team_abbreviations = {
     "Southampton": "SOU",
     'Sheffield United': "SHU",
     "Burnley": "BUR",
-    "Luton Town": "LUT"
+    "Luton Town": "LUT",
+    "Norwich City": "NOR",
+    "West Bromwich Albion": "WBA",
+    "Cardiff City": "CAR",
+    "Huddersfield Town": "HUD"
 }
 
 # point for each team(money spent, pts)
 teams_data = {}
-for entry in transfers_five_year_table:
+for entry in transfers18_23:
     if entry["Team"] in avg_pts_5_seasons:
-        teams_data[entry["Team"]] = (-entry["Total"], avg_pts_5_seasons[entry["Team"]])
+        teams_data[entry["Team"]] = (-entry["Balance"], avg_pts_5_seasons[entry["Team"]])
 
 # print(transfers_five_year_table)
 
@@ -53,7 +58,7 @@ plt.scatter(net_transfer_spending, average_points)
 
 # Annotate each point with the team name (2 for formatting)
 for team_name, data in teams_data.items():
-    if team_abbreviations[team_name] == "BOU" or team_abbreviations[team_name] == "ARS":
+    if team_abbreviations[team_name] == "NEW" or team_abbreviations[team_name] == "AVL":
         plt.annotate(team_abbreviations[team_name],  # this is the text
                     data,  # these are the coordinates to position the label
                     textcoords="offset points",  # how to position the text

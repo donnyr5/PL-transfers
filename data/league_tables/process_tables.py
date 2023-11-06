@@ -3,7 +3,7 @@ import os
 # Define the base directory where your CSV files are located
 base_dir = './data/league_tables/'
 # Define the range of your seasons
-seasons = range(12, 23)  # This will cover seasons from '12:13' to '22:23'
+seasons = range(12, 24)  # This will cover seasons from '12:13' to '22:23'
 
 # team_data[season] = the entire table for that season
 # team_data[season][1] = data for team that finished 2nd that season.
@@ -57,13 +57,16 @@ for start_year in seasons:
 1. store each teams avg points
 2. we have to know how many seasons a team in the league.
 '''
+#EXPORT THESE
+avg_pts_5_seasons = {}
+avg_pos_3_seasons = {}
+
 
 season_keys = list(team_data.keys())
-recent_5_seasons = season_keys[6:] #last 5 seasons
+recent_5_seasons = season_keys[6:11] #last 5 seasons
 season_count = {}
 
 total_points_5_seasons = {}
-
 for season in recent_5_seasons:
     for entry in team_data[season]:
         if entry['Team'] in total_points_5_seasons:
@@ -73,9 +76,27 @@ for season in recent_5_seasons:
             total_points_5_seasons[entry['Team']] = int(entry["Pts"])
             season_count[entry['Team']] = 1
 
-avg_pts_5_seasons = {}
 for team in total_points_5_seasons:
-    avg_pts_5_seasons[team] = total_points_5_seasons[team] / season_count[team]
+    avg_pts_5_seasons[team] = round(total_points_5_seasons[team] / season_count[team], 2)
+
+#get average finish from last 2 seasons + right now. have this for every team in the league now.
+recent_2_seasons = season_keys[9:] #last 5 seasons
+season_count = {}
+
+total_points_2_seasons = {}
+for season in recent_2_seasons:
+    for entry in team_data[season]:
+        if entry['Team'] in total_points_2_seasons:
+            total_points_2_seasons[entry['Team']] += int(entry["Position"])
+            season_count[entry['Team']] += 1
+        else:
+            total_points_2_seasons[entry['Team']] = int(entry["Position"])
+            season_count[entry['Team']] = 1
+
+for team in total_points_2_seasons:
+    avg_pos_3_seasons[team] = round(total_points_2_seasons[team] / season_count[team], 2)
 
 #each team and their average points last 5 seasons. 
+# print(avg_pts_5_seasons)
+# print(avg_pos_3_seasons)
 # print(avg_pts_5_seasons)

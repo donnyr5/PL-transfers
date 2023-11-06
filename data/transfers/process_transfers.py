@@ -12,17 +12,21 @@ def convert_value_to_million(value):
         return float(value)         #if nothing assume millions I guess
 
 
-# EXPORT THIS
+# EXPORT THESE
 transfers_five_year_table = []
+transfers_three_year_table = {}
 
 csv_file_path = './data/transfers/5_year_totals.csv'
 with open(csv_file_path, 'r') as csvfile:
     csvreader = csv.reader(csvfile) # Create a CSV reader object
     headers = next(csvreader)
     
+    transfers_five_year_table = []
 
     for row in csvreader:
         # Create a dictionary for each team, going through rows
+        # transfers_three_year_table[row[0]] = convert_value_to_million(row[1]) + convert_value_to_million(row[2] + convert_value_to_million(row[3]))
+
         team_data = {
             'Team': row[0],
             '23/24': convert_value_to_million(row[1]),
@@ -38,6 +42,7 @@ with open(csv_file_path, 'r') as csvfile:
 # for team in transfers_five_year_table:
 #     print(team)
 
+# print(transfers_two_year_table)
 '''
 value is in millions of EURO
 '''
