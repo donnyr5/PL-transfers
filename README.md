@@ -4,3 +4,10 @@ league_tables: https://www.footballwebpages.co.uk/premier-league/league-table/20
 
 transfers 5 year: https://www.transfermarkt.us/premier-league/fuenfjahresvergleich/wettbewerb/GB1 
 
+detailed transfers: https://github.com/ewenme/transfers/blob/master/data/premier-league.csv
+
+Graph1: 
+
+
+ExtractPL:
+- age: average age of all transfers in for club since 2018

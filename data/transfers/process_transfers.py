@@ -35,6 +35,7 @@ with open(csv_file_path, 'r') as csvfile:
             '20/21': convert_value_to_million(row[4]),
             '19/20': convert_value_to_million(row[5]),
             'Total': convert_value_to_million(row[6]),
+            'last3': convert_value_to_million(row[1]) + convert_value_to_million(row[2]) + convert_value_to_million(row[3])
         }
         transfers_five_year_table.append(team_data) #add each row
 

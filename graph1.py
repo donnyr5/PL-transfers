@@ -4,39 +4,11 @@ import matplotlib.pyplot as plt
 from data.league_tables.process_tables import avg_pts_5_seasons
 from data.transfers.process18_23 import transfers18_23
 from data.transfers.process_transfers import transfers_five_year_table
+from abrev import team_abbreviations
 
 '''
 Average points per season VS net transfer spending (in million euro) from 2018/19 - 2022/2023
 '''
-team_abbreviations = {
-    "Manchester City": "MCI",
-    "Arsenal": "ARS",
-    "Manchester United": "MUN",
-    "Newcastle United": "NEW",
-    "Liverpool": "LIV",
-    "Brighton & Hove Albion": "BHA",
-    "Aston Villa": "AVL",
-    "Tottenham Hotspur": "TOT",
-    "Brentford": "BRE",
-    "Fulham": "FUL",
-    "Crystal Palace": "CP",
-    "Chelsea": "CHE",
-    "Wolverhampton Wanderers": "WOL",
-    "West Ham United": "WHU",
-    "AFC Bournemouth": "BOU",
-    "Nottingham Forest": "NFO",
-    "Everton": "EVE",
-    "Leicester City": "LEI",
-    "Leeds United": "LEE",
-    "Southampton": "SOU",
-    'Sheffield United': "SHU",
-    "Burnley": "BUR",
-    "Luton Town": "LUT",
-    "Norwich City": "NOR",
-    "West Bromwich Albion": "WBA",
-    "Cardiff City": "CAR",
-    "Huddersfield Town": "HUD"
-}
 
 # point for each team(money spent, pts)
 teams_data = {}

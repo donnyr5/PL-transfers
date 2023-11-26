@@ -58,6 +58,7 @@ for start_year in seasons:
 2. we have to know how many seasons a team in the league.
 '''
 #EXPORT THESE
+#[team] = points
 avg_pts_5_seasons = {}
 avg_pos_3_seasons = {}
 
@@ -80,7 +81,7 @@ for team in total_points_5_seasons:
     avg_pts_5_seasons[team] = round(total_points_5_seasons[team] / season_count[team], 2)
 
 #get average finish from last 2 seasons + right now. have this for every team in the league now.
-recent_2_seasons = season_keys[9:] #last 5 seasons
+recent_2_seasons = season_keys[9:] #last 3 seasons
 season_count = {}
 
 total_points_2_seasons = {}
@@ -98,5 +99,5 @@ for team in total_points_2_seasons:
 
 #each team and their average points last 5 seasons. 
 # print(avg_pts_5_seasons)
-# print(avg_pos_3_seasons)
+# print(avg_pos_3_seasons) 
 # print(avg_pts_5_seasons)
