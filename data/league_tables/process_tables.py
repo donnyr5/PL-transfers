@@ -67,6 +67,8 @@ season_keys = list(team_data.keys())
 recent_5_seasons = season_keys[6:11] #last 5 seasons
 season_count = {}
 
+
+
 total_points_5_seasons = {}
 for season in recent_5_seasons:
     for entry in team_data[season]:
@@ -101,3 +103,36 @@ for team in total_points_2_seasons:
 # print(avg_pts_5_seasons)
 # print(avg_pos_3_seasons) 
 # print(avg_pts_5_seasons)
+
+
+# for each team, there will be a LIST of 4 differences: 1819 X 1920 X 2021 X 2122 X 2223
+points_diff = {}
+gd_diff = {}
+
+for season in recent_5_seasons:
+    for entry in team_data[season]:
+        # if we have already a list, append to it the difference
+        if entry['Team'] in points_diff.keys():
+            listt = points_diff[entry['Team']]
+            listt.append( [int(entry["Pts"]), season])
+            listt[-2][0] = listt[-1][0] - listt[-2][0]
+            listt[-2][1] = listt[-1][1]
+        else:
+        #make a list with just the first season's total points.
+            points_diff[entry['Team']] = [ [int(entry['Pts']), season]]
+        
+        if entry['Team'] in gd_diff.keys():
+            listt = gd_diff[entry['Team']]
+            listt.append( [int(entry["+/-"]), season])
+            listt[-2][0] = listt[-1][0] - listt[-2][0]
+            listt[-2][1] = listt[-1][1]
+        else:
+        #make a list with just the first season's total points.
+            gd_diff[entry['Team']] = [ [int(entry['+/-']), season]]
+        
+#delete the last entry in each list
+for key in points_diff:
+    del points_diff[key][-1]
+    del gd_diff[key][-1]
+
+# print(gd_diff)

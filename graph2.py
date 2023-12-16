@@ -34,9 +34,17 @@ for team_name, data in teams_data.items():
 # Set the title and labels for the axes
 plt.title('Net Transfer Spending vs Average League Position Since 2021')
 plt.xlabel('Net Transfer Spending(€ in millions)')
-plt.ylabel('Average Points per Season')
+plt.ylabel('Average Finish per Season')
 
 plt.gca().invert_yaxis()
+
+# Calculate coefficients for the line of best fit
+b, a = np.polyfit(net_transfer_spending, average_points, deg=1)
+# Create a polynomial function from the coefficients
+line_of_best_fit = np.poly1d((b, a))
+print("For every 100 million spend, an average of", 100 * b, " league positions are gained.")
+# Generate y-values for each x-value using the line of best fit
+plt.plot(net_transfer_spending, line_of_best_fit(net_transfer_spending), color='green')
 
 
 # Show the plot

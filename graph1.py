@@ -5,6 +5,8 @@ from data.league_tables.process_tables import avg_pts_5_seasons
 from data.transfers.process18_23 import transfers18_23
 from data.transfers.process_transfers import transfers_five_year_table
 from abrev import team_abbreviations
+import numpy as np
+
 
 '''
 Average points per season VS net transfer spending (in million euro) from 2018/19 - 2022/2023
@@ -47,6 +49,17 @@ for team_name, data in teams_data.items():
 plt.title('Net Transfer Spending vs Average Points per Season (18-23)')
 plt.xlabel('Net Transfer Spending Last 5 Seasons (€ in millions)')
 plt.ylabel('Average Points Per Season')
+
+# Calculate coefficients for the line of best fit
+b, a = np.polyfit(net_transfer_spending, average_points, deg=1)
+
+# Create a polynomial function from the coefficients
+line_of_best_fit = np.poly1d((b, a))
+print("For every 100 million spend, an average of", 100 * b, " points are gained.")
+
+# Generate y-values for each x-value using the line of best fit
+plt.plot(net_transfer_spending, line_of_best_fit(net_transfer_spending), color='green')
+
 
 # Show the plot
 plt.show()
